@@ -1,2 +1,2 @@
-web: daphne channels_testing.asgi:channel_layer --log-file -
+web: daphne channels_testing.asgi:channel_layer -p $PORT
 
