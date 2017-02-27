@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <script>
+      var username = ""
+      function setUsername() {
+        username = document.getElementById("username").value
+        alert("username is: " + username)
+        startUpSockets()
+      }
+      function startUpSockets() {
+        socket = new WebSocket("ws://" + "localhost:8000" + "/chat/")
+        socket.onmessage = function(e) {
+          var node = document.createElement("p")
+          var textNode = document.createTextNode(e.data)
+          node.appendChild(textNode)
+          var messages = document.getElementById("messages").appendChild(node)
+        }
+        socket.onopen = function() {
+          socket.send("hello world")
+        }
+      }
+      function sendMessage(){
+        socket.send(username + ": " + document.getElementById("message").value)
+      }
+    </script>
+    <title>
+      Room {{ room }}
+    </title>
+  </head>
+
+  <body>
+    <h1>Chat room</h1>
+      User name: <input type="text" id="username">
+      <button type="submit" onclick="setUsername()">Set</button>
+
+      <div id="messages">
+
+      </div>
+
+      Your message: <input type="text" id="message">
+      <button type="submit" onclick="sendMessage()">Send</button>
+  </body>
+<html>
