@@ -53,7 +53,7 @@ CHANNEL_LAYERS= {
         "ROUTING": "channels_testing.routing.channel_routing",
     },
 }
-CORS_ORIGIN_ALLOW_ALL = TRUE
+CORS_ORIGIN_ALLOW_ALL = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
